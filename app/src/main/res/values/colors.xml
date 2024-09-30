@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    //app
+    <color name="primary">#0397D3</color>
+    <color name="black_333">#333333</color>
+
+    //line
+    <color name="color_line">#EBEBEB</color>
+
+    //custom view
+    <color name="color_sell_strong">#EF3647</color>
+    <color name="color_sell">#C93C64</color>
+    <color name="color_follow">#8E4491</color>
+    <color name="color_buy">#524CBE</color>
+    <color name="color_buy_strong">#2A51DC</color>
+    <color name="color_indicator">#DCDCDC</color>
+</resources>

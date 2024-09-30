@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "171796255097",
+    "project_id": "news-app-graduation-24-11",
+    "storage_bucket": "news-app-graduation-24-11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171796255097:android:3de4b384e8602fad595fa8",
+        "android_client_info": {
+          "package_name": "news.app.graduation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpTDL9MVx89xi_FithhZyBDAxkB6PKu6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
