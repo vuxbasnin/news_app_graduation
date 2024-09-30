@@ -58,7 +58,7 @@ class RetrofitServiceModule {
     @Named(Constants.Inject.DEMO)
     fun provideDemoRetrofit(gson: Gson, context: Context): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL_NATION_FLAG)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(getHttpClient(context))
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -70,7 +70,7 @@ class RetrofitServiceModule {
     @Named(Constants.Inject.API)
     fun provideNewsRetrofit(gson: Gson, context: Context): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL_NATION_FLAG)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(getHttpClient(context))
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))

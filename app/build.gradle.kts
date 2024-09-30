@@ -83,14 +83,12 @@ android {
         create("development") {
             dimension = "environment"
             manifestPlaceholders["appLabel"] = "News App Graduation Debug"
-            buildConfigField("String", "BASE_URL", "\"https://reqres.in/api/\"")
-            buildConfigField("String", "BASE_URL_NATION_FLAG", "\"https://restcountries.com/v3.1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://thanhnien.vn/rss/\"")
         }
         create("production") {
             dimension = "environment"
             manifestPlaceholders["appLabel"] = "News App Graduation"
-            buildConfigField("String", "BASE_URL", "\"https://reqres.in/api/\"")
-            buildConfigField("String", "BASE_URL_NATION_FLAG", "\"https://restcountries.com/v3.1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://thanhnien.vn/rss/\"")
         }
     }
 }
@@ -138,6 +136,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.retrofit.converter.scalars)
+    implementation(libs.retrofit.converter.simplexml)
 
     //coroutine
     implementation(libs.coroutine.android)

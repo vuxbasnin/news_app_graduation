@@ -72,6 +72,7 @@ chucker-logging-release = { group = "com.github.chuckerteam.chucker", name = "li
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 retrofit-converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit" }
+retrofit-converter-simplexml = { group = "com.squareup.retrofit2", name = "converter-simplexml", version.ref = "retrofit" }
 coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
 coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 timber-log = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }

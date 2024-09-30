@@ -5,4 +5,6 @@ import javax.inject.Inject
 
 class ApiDataSource @Inject constructor(private val newsServiceRetrofit: NewsServiceRetrofit) {
     suspend fun getConfigApp() = newsServiceRetrofit.getConfigApp()
+
+    suspend fun getDataHome() = newsServiceRetrofit.getDataHome()
 }

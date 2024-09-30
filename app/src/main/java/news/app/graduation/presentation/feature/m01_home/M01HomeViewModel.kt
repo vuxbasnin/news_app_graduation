@@ -1,17 +1,22 @@
 package news.app.graduation.presentation.feature.m01_home
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import news.app.graduation.data.repository.DemoRepository
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import news.app.graduation.data.model.response.rss.RssFeed
+import news.app.graduation.data.network.Resource
+import news.app.graduation.data.repository.HomeRepository
 import news.app.graduation.presentation.core.base.BaseViewModel
 import news.app.graduation.presentation.core.base.CommonState
 import javax.inject.Inject
 
 @HiltViewModel
-class M01HomeViewModel @Inject constructor(private val demoRepository: DemoRepository) :
+class M01HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) :
     BaseViewModel() {
-    private val _m01State = MutableLiveData<CommonState<ArrayList<Any>>>()
-    val m01State get() = _m01State
+    private val _m01HomeState = MutableLiveData<CommonState<RssFeed>>()
+    val m01HomeState get() = _m01HomeState
 
     init {
         refreshData()
@@ -23,6 +28,16 @@ class M01HomeViewModel @Inject constructor(private val demoRepository: DemoRepos
     }
 
     private fun getData() {
-
+        viewModelScope.launch {
+            homeRepository.getDataHome().map {
+                when(it) {
+                    is Resource.Error -> CommonState.Fail(it.message)
+                    is Resource.Loading -> CommonState.Loading()
+                    is Resource.Success -> CommonState.Success(it.data)
+                }
+            }.collect{
+                _m01HomeState.value = it
+            }
+        }
     }
 }
