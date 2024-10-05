@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -9,6 +8,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.gms.googleServices)
+    alias(libs.plugins.compose.compiler)
     id("kotlin-parcelize")
     id("kotlin-kapt")
 }
@@ -34,7 +34,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        archivesName.set("NewsAppGraduation-($versionCode-$versionName)${getDate()}")
+        extensions.getByType(BasePluginExtension::class.java).archivesName.set("NewsAppGraduation-($versionCode-$versionName)${getDate()}")
     }
 
     buildTypes {
@@ -58,17 +58,17 @@ android {
         enable = true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "19"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {

@@ -7,8 +7,9 @@ plugins {
     alias(libs.plugins.gms.googleServices) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.compose.compiler) apply false
 }
 
 task<Delete>("clean") {
-    delete(rootProject.buildDir)
+    delete(layout.buildDirectory)
 }
