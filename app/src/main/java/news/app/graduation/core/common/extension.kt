@@ -1,11 +1,14 @@
 package news.app.graduation.core.common
 
+import android.util.Log
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.gson.Gson
 import news.app.graduation.presentation.core.widget.SimpleDividerItemDecoration
+import org.simpleframework.xml.core.Persister
+import java.io.StringReader
 
 fun View?.show() {
     this?.visibility = View.VISIBLE
@@ -42,5 +45,16 @@ fun RecyclerView.addAddIgnoreDivider(listPosIgnore: List<Int>) {
                 return
             }
         }
+    }
+}
+
+inline fun <reified T> String.parseRss(): T? {
+    val serializer = Persister()
+    val reader = StringReader(this)
+    return try {
+        serializer.read(T::class.java, reader)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
     }
 }

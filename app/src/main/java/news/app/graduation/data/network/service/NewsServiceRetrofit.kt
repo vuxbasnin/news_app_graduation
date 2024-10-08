@@ -11,5 +11,5 @@ interface NewsServiceRetrofit {
     suspend fun getConfigApp(): Response<ConfigAppResponse>
 
     @GET(Endpoint.HOME)
-    suspend fun getDataHome(): Response<RssFeed>
+    suspend fun getDataHome(): Response<String>
 }

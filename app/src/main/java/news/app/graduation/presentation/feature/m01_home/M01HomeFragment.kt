@@ -3,6 +3,8 @@ package news.app.graduation.presentation.feature.m01_home
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import news.app.graduation.core.common.parseRss
+import news.app.graduation.data.model.response.rss.RssFeed
 import news.app.graduation.databinding.M01HomeFragmentBinding
 import news.app.graduation.presentation.core.base.BaseFragment
 import news.app.graduation.presentation.core.base.CommonState
@@ -24,7 +26,7 @@ class M01HomeFragment : BaseFragment<M01HomeFragmentBinding>(M01HomeFragmentBind
                 }
 
                 is CommonState.Success -> {
-                    Timber.d("NINVB => list data home ${state.data}")
+                    Timber.d("NINVB => list data home ${state.data.parseRss<RssFeed>()?.channel}")
                 }
 
                 is CommonState.Fail -> {

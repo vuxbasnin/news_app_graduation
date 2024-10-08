@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class M01HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) :
     BaseViewModel() {
-    private val _m01HomeState = MutableLiveData<CommonState<RssFeed>>()
+    private val _m01HomeState = MutableLiveData<CommonState<String>>()
     val m01HomeState get() = _m01HomeState
 
     init {
