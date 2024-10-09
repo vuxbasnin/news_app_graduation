@@ -34,6 +34,8 @@ cache-fix = "2.7.1"
 eventbus = "3.3.1"
 navigationFragmentKtx = "2.8.2"
 navigationUiKtx = "2.8.2"
+shimmer = "0.5.0"
+jsoup = "1.15.1"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -94,3 +96,5 @@ firebase-dynamic-links = { module = "com.google.firebase:firebase-dynamic-links-
 firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }

@@ -1,5 +1,7 @@
 package news.app.graduation.data.model.response.rss
 
+import news.app.graduation.core.common.extractDataFromDescription
+import news.app.graduation.core.common.parseRssDescription
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Path
 import org.simpleframework.xml.Root
@@ -23,4 +25,16 @@ data class Item(
 
     @field:Element(name = "guid", data = true)
     var guid: String = ""
+) {
+    val indexLast = link.lastIndexOf("-")
+    val indexLastDot = link.lastIndexOf(".")
+    val newsId = link.substring(indexLast + 1, indexLastDot)
+
+    val descriptionParse = description.extractDataFromDescription()
+}
+
+data class ParsedDescription(
+    val link: String,
+    val imageUrl: String,
+    val textDescription: String
 )

@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/ctl_top_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_detail_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_12"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_detail_top_home" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_detail_view_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_detail_home"
+                    app:layout_constraintLeft_toRightOf="@+id/btn_detail_home"
+                    app:layout_constraintTop_toTopOf="@+id/btn_detail_home"
+                    app:srcCompat="@drawable/ic_detail_top_right" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_zone_name_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:ellipsize="end"
+                    android:maxWidth="@dimen/size_100"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/size_12"
+                    android:textColor="@color/color_8c"
+                    android:textSize="@dimen/size_16"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_detail_view_right"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toRightOf="@+id/img_detail_view_right"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/img_detail_view_right" />
+
+                <View
+                    android:id="@+id/view_line_top"
+                    android:layout_width="@dimen/size_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_8"
+                    android:background="@color/color_E8"
+                    android:minHeight="@dimen/size_16"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_zone_name_fragment"
+                    app:layout_constraintLeft_toRightOf="@+id/txt_zone_name_fragment"
+                    app:layout_constraintTop_toTopOf="@+id/txt_zone_name_fragment" />
+
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/size_12"
+                    android:paddingLeft="@dimen/size_8"
+                    android:paddingRight="@dimen/size_8"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_zone_name_fragment"
+                    app:layout_constraintLeft_toRightOf="@+id/view_line_top"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_zone_name_fragment">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_zone_sapo"
+                        style="@style/TextInter16TitleSemiBold600"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:textColor="@color/color_black_28"
+                        android:visibility="visible" />
+                </HorizontalScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <WebView
+            android:id="@+id/detailWebview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:id="@+id/shimmer_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <include layout="@layout/layout_cache_data_detail" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <news.app.graduation.presentation.core.widget.BottomDetailLayout
+        android:id="@+id/ctl_bottom_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

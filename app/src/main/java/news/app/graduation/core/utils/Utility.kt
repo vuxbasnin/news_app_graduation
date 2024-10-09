@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.provider.Settings
+import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import news.app.graduation.R
+import news.app.graduation.core.common.markRead
+import news.app.graduation.core.utils.PreferenceHelper.SAVE_READ_POST
 import news.app.graduation.presentation.core.widget.LinearLayoutManagerWrapper
 
 object Utility {
@@ -78,5 +81,15 @@ object Utility {
         )
         circularProgressDrawable.start()
         return circularProgressDrawable
+    }
+
+    fun setMarkRead(view: View, isRead: Boolean) {
+        view.markRead(isRead)
+    }
+
+    fun setMarkRead(view: View, newsId: String?) {
+        setMarkRead(
+            view,
+            newsId?.let { PreferenceHelper.get(SAVE_READ_POST, "").contains(it) } ?: false)
     }
 }

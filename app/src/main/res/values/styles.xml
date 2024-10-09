@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="TextInter14TitleRegular400">
         <item name="android:textSize">@dimen/font_14</item>
     </style>
@@ -10,5 +11,53 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextMerri18TitleBold700">
+        <item name="fontFamily">@font/merriweather_bold_700</item>
+        <item name="android:textSize">@dimen/font_18</item>
+        <item name="android:textColor">@color/color_title_text_1B</item>
+    </style>
+
+    <style name="TextInter14DescriptionRegular400">
+        <item name="fontFamily">@font/inter_regular_400</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textColor">@color/color_title_text_555</item>
+    </style>
+
+    <style name="TextInter18TitleSemiBold600">
+        <item name="fontFamily">@font/inter_semi_bold_600</item>
+        <item name="android:textSize">@dimen/font_18</item>
+        <item name="android:textColor">@color/color_text_title</item>
+    </style>
+
+    <style name="TextInter13DescriptionRegular400">
+        <item name="fontFamily">@font/inter_regular_400</item>
+        <item name="android:textSize">@dimen/font_13</item>
+        <item name="android:textColor">@color/color_title_text_555</item>
+    </style>
+
+    <style name="TextInter14TitleSemiBold600">
+        <item name="fontFamily">@font/inter_semi_bold_600</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textColor">@color/color_title_text_333</item>
+    </style>
+
+    <style name="TextSfpro24TitleBold700">
+        <item name="fontFamily">@font/sf_pro_bold_700</item>
+        <item name="android:textSize">@dimen/font_24</item>
+        <item name="android:textColor">@color/color_text_title</item>
+    </style>
+
+    <style name="TextSE18TitleBold700">
+        <item name="fontFamily">@font/se_bold_700</item>
+        <item name="android:textSize">@dimen/font_18</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextInter16TitleSemiBold600">
+        <item name="fontFamily">@font/inter_semi_bold_600</item>
+        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:textColor">@color/color_text_title</item>
     </style>
 </resources>

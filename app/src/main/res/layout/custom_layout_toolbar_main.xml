@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_tab_media" />
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/TextSfpro24TitleBold700"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Kenh14"
+            android:textAllCaps="true"
+            android:textColor="@color/color_text_343"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+            app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_f9"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/size_10"
+        android:paddingTop="@dimen/size_5"
+        android:paddingEnd="@dimen/size_10"
+        android:paddingBottom="@dimen/size_5"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_11"
+            tools:text="Thứ sáu, 07/05/2021" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btn_notify"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:padding="3dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_notify" />
+
+            <TextView
+                android:id="@+id/number_top"
+                android:layout_width="@dimen/size_14"
+                android:layout_height="@dimen/size_14"
+                android:background="@drawable/bg_circle_tab"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_7"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/btn_notify"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="99+" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageView
+            android:id="@+id/btn_menu"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:padding="3dp"
+            app:srcCompat="@drawable/ic_menu_topbar" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_1"
+        android:background="@color/color_line_e6"
+        app:layout_constraintTop_toBottomOf="@+id/lin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

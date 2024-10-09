@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import news.app.graduation.data.model.response.rss.RssFeed
 import news.app.graduation.data.network.Resource
 import news.app.graduation.data.repository.HomeRepository
 import news.app.graduation.presentation.core.base.BaseViewModel
@@ -27,7 +26,7 @@ class M01HomeViewModel @Inject constructor(private val homeRepository: HomeRepos
         getData()
     }
 
-    private fun getData() {
+    fun getData() {
         viewModelScope.launch {
             homeRepository.getDataHome().map {
                 when(it) {

@@ -83,12 +83,12 @@ android {
         create("development") {
             dimension = "environment"
             manifestPlaceholders["appLabel"] = "News App Graduation Debug"
-            buildConfigField("String", "BASE_URL", "\"https://thanhnien.vn/rss/\"")
+            buildConfigField("String", "BASE_URL", "\"https://kenh14.vn/rss/\"")
         }
         create("production") {
             dimension = "environment"
             manifestPlaceholders["appLabel"] = "News App Graduation"
-            buildConfigField("String", "BASE_URL", "\"https://thanhnien.vn/rss/\"")
+            buildConfigField("String", "BASE_URL", "\"https://kenh14.vn/rss/\"")
         }
     }
 }
@@ -169,4 +169,10 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.dynamic.links)
+
+    //ui libs
+    implementation(libs.shimmer)
+
+    //jsoup: handle HTML
+    implementation(libs.jsoup)
 }

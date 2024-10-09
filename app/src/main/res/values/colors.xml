@@ -8,13 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="color_red">#F52943</color>
 
     //app
-    <color name="primary">#0397D3</color>
+    <color name="primary">#E40913</color>
     <color name="black_333">#333333</color>
 
     //line
     <color name="color_line">#EBEBEB</color>
+    <color name="color_line_db">#DBDBDB</color>
+    <color name="color_line_e6">#E6E6E6</color>
 
     //custom view
     <color name="color_sell_strong">#EF3647</color>
@@ -23,4 +26,26 @@
     <color name="color_buy">#524CBE</color>
     <color name="color_buy_strong">#2A51DC</color>
     <color name="color_indicator">#DCDCDC</color>
+    <color name="color_app">@color/primary</color>
+
+    //color text
+    <color name="color_title_text_1B">#1B1D2D</color>
+    <color name="color_title_text_777">#777777</color>
+    <color name="color_title_text_555">#555555</color>
+    <color name="color_title_text_333">#333333</color>
+    <color name="color_text_343">#343D49</color>
+    <color name="color_text_title">@color/color_black_29</color>
+    <color name="color_black_29">#292929</color>
+    <color name="color_CE2424">#CE2424</color>
+
+    <color name="color_bg_f6">#F6F6F6</color>
+    <color name="placeholder_bg">#dddddd</color>
+    <color name="color_f9">#F9F9F9</color>
+    <color name="color_black_alpha_5">#0D000000</color>
+    <color name="color_8c">#8C8C8C</color>
+    <color name="color_E8">#E8E8E8</color>
+    <color name="color_black_28">#282828</color>
+    <color name="color_background_white_black">@color/white</color>
+    <color name="transparent_50">#80000000</color>
+
 </resources>

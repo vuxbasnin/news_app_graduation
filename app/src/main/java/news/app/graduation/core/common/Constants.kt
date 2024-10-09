@@ -11,13 +11,13 @@ object Constants {
         const val PREF_IS_HOME_QUICK_VIEW = "IS_HOME_QUICK_VIEW"
         const val PREF_CONFIG_APP = "pref_config_app"
         const val PREF_FONT_LEVEL = "pref_font_level"
-        const val SAVE_READ_POST = "save_read_post"
         const val LOGIN_SUCCESS = "login"
         const val PREF_IS_SHOW_TOOL_TIP = "pref_show_tool_tip"
         const val PREF_AUTH_MODEL = "AUTH_MODEL"
         const val PREF_DARK_MODE_APP = "PREF_DARK_MODE_APP"
         const val PREF_DARK_MODE_SYSTEM = "IS_DARK_MODE_SYSTEM"
         const val PREF_DARK_MODE_IS_DISMISS_PROMPT = "PREF_DARK_MODE_IS_DISMISS_PROMPT"
+        const val USER_AGENT_WEBVIEW = "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Mobile Safari/537.36 BgtAppUserAgent"
     }
 
     object KeyUserInfo {

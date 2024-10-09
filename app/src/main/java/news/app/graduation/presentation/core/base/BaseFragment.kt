@@ -15,6 +15,7 @@ import news.app.graduation.presentation.NavigationManager
 abstract class BaseFragment<T: ViewBinding>(private val bindingInflater: (layoutInflater: LayoutInflater) -> T): Fragment(), View.OnClickListener {
     var _binding: T? = null
     protected val binding get() = _binding!!
+    protected val bindingOrNull get() = _binding
     var TAG: String = this.javaClass.simpleName
     var isClickAble = true
 
