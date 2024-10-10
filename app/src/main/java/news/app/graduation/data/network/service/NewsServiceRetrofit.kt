@@ -11,4 +11,7 @@ interface NewsServiceRetrofit {
 
     @GET(Endpoint.HOME)
     suspend fun getDataHome(): Response<String>
+
+    @GET(Endpoint.STAR)
+    suspend fun getDataStar(): Response<String>
 }

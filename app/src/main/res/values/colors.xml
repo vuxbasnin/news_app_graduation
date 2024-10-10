@@ -47,5 +47,7 @@
     <color name="color_black_28">#282828</color>
     <color name="color_background_white_black">@color/white</color>
     <color name="transparent_50">#80000000</color>
-
+    <color name="dots_indicator_black">#182940</color>
+    <color name="dots_indicator_black_default">#80182940</color>
+    <color name="color_title_text_182">#182940</color>
 </resources>

@@ -1,4 +1,4 @@
-package news.app.graduation.presentation.feature.m01_home
+package news.app.graduation.presentation.feature.m02_latest_news
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -12,10 +12,10 @@ import news.app.graduation.presentation.core.base.CommonState
 import javax.inject.Inject
 
 @HiltViewModel
-class M01HomeViewModel @Inject constructor(private val appRepository: AppRepository) :
+class M02StarViewModel @Inject constructor(private val appRepository: AppRepository) :
     BaseViewModel() {
-    private val _m01HomeState = MutableLiveData<CommonState<String>>()
-    val m01HomeState get() = _m01HomeState
+    private val _m02StarState = MutableLiveData<CommonState<String>>()
+    val m02StarState get() = _m02StarState
 
     init {
         refreshData()
@@ -26,16 +26,16 @@ class M01HomeViewModel @Inject constructor(private val appRepository: AppReposit
         getData()
     }
 
-    fun getData() {
+    private fun getData() {
         viewModelScope.launch {
-            appRepository.getDataHome().map {
-                when(it) {
+            appRepository.getDataStar().map {
+                when (it) {
                     is Resource.Error -> CommonState.Fail(it.message)
                     is Resource.Loading -> CommonState.Loading()
                     is Resource.Success -> CommonState.Success(it.data)
                 }
-            }.collect{
-                _m01HomeState.value = it
+            }.collect {
+                _m02StarState.value = it
             }
         }
     }

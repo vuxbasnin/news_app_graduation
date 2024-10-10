@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/size_16">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginEnd="@dimen/size_20"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="208:105"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_12"
+        android:fontFamily="@font/merriweather_bold_700"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textColor="@color/color_title_text_182"
+        android:textSize="@dimen/font_15"
+        app:layout_constraintEnd_toEndOf="@+id/imgAvatar"
+        app:layout_constraintStart_toStartOf="@+id/imgAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
+        tools:text="Siết chặt công tác quản lý, xử lý vi phạm trong lĩnh vực môi trường Siết chặt công tác quản lý, xử lý vi phạm trong lĩnh vực môi trường Siết chặt công tác quản lý, xử lý vi phạm trong lĩnh vực môi trường" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgType"
+        android:layout_width="@dimen/size_36"
+        android:layout_height="@dimen/size_36"
+        android:layout_marginStart="@dimen/size_6"
+        android:layout_marginBottom="@dimen/size_6"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+        app:layout_constraintStart_toStartOf="@+id/imgAvatar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

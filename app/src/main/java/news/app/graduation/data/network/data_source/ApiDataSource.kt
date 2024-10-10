@@ -7,4 +7,5 @@ class ApiDataSource @Inject constructor(private val newsServiceRetrofit: NewsSer
     suspend fun getConfigApp() = newsServiceRetrofit.getConfigApp()
 
     suspend fun getDataHome() = newsServiceRetrofit.getDataHome()
+    suspend fun getDataStar() = newsServiceRetrofit.getDataStar()
 }

@@ -60,4 +60,10 @@
         <item name="android:textSize">@dimen/font_16</item>
         <item name="android:textColor">@color/color_text_title</item>
     </style>
+
+    <style name="TextMerri23TitleBold700">
+        <item name="fontFamily">@font/merriweather_bold_700</item>
+        <item name="android:textSize">@dimen/font_23</item>
+        <item name="android:textColor">@color/color_title_text_1B</item>
+    </style>
 </resources>

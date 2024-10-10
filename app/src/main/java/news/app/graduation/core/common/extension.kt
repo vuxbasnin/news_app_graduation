@@ -1,14 +1,22 @@
 package news.app.graduation.core.common
 
+import android.annotation.SuppressLint
+import android.graphics.Rect
 import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.view.children
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import news.app.graduation.core.utils.CommonUtils
 import news.app.graduation.data.model.response.rss.Item
 import news.app.graduation.data.model.response.rss.ParsedDescription
 import news.app.graduation.data.model.response.rss.RssResponse
@@ -21,6 +29,7 @@ import org.jsoup.nodes.Element
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.StringReader
+import kotlin.math.ceil
 
 fun View?.show() {
     this?.visibility = View.VISIBLE
@@ -184,4 +193,56 @@ fun View.clickWithThrottle(throttleTime: Long = 600L, action: () -> Unit) {
 
 fun Item.openDetail() {
     NavigationManager.getInstance().openFragment(M05DetailNewsFragment.newInstance(this))
+}
+
+@SuppressLint("SetTextI18n")
+fun TextView.setTextCustomEllipsize(string: String?) {
+    val dot = "..."
+    fun getTextWidth(text: String): Int {
+        val bounds = Rect()
+        val paint = paint
+        paint.getTextBounds(text, 0, text.length, bounds)
+        return ceil(bounds.width().toDouble()).toInt()
+    }
+    if (text.endsWith(dot) && string?.contains(text.toString().substring(0, text.length)) == true)
+        return
+    ellipsize = null
+    text = string
+    post {
+        if (lineCount > maxLines) {
+            findViewTreeLifecycleOwner()?.lifecycleScope?.launch(Dispatchers.Main) {
+                val layout = layout ?: return@launch
+                val lineEndStartIndex = layout.getLineStart(maxLines - 1)
+                val lineEndEndIndex = layout.getLineEnd(maxLines - 1)
+                if (lineEndEndIndex < lineEndStartIndex)
+                    return@launch
+                val prevText = text.substring(0, lineEndStartIndex)
+                val textLastLine = text.substring(lineEndStartIndex, lineEndEndIndex)
+                val displayedWidth = width - paddingLeft - paddingRight
+
+                var newText = textLastLine
+                var textWidthDotWidth = getTextWidth(textLastLine + dot)
+                if (textWidthDotWidth < displayedWidth) {
+                    text = prevText + newText.trim() + dot
+                    return@launch
+                }
+                if (CommonUtils.isNullOrEmpty(newText)) {
+                    return@launch
+                }
+                while (textWidthDotWidth > displayedWidth && newText.isNotEmpty()) {
+                    newText = newText.substring(0, newText.length - 1).trim()
+                    textWidthDotWidth = getTextWidth(newText + dot)
+                }
+                text = prevText + newText.subLast().trim() + dot
+            }
+        }
+    }
+}
+
+fun String.subLast(): String {
+    val lastIndex = lastIndexOf(" ", length)
+    return if (lastIndex == -1)
+        this
+    else
+        substring(0, lastIndex)
 }

@@ -6,15 +6,18 @@ import news.app.graduation.databinding.ItemNewsHolderBinding
 import news.app.graduation.presentation.my_interface.OnClickItemHomeListener
 import news.app.graduation.presentation.shared_holder.BaseNewsHolder
 
-class NormalNewsHolder(private val binding: ItemNewsHolderBinding): BaseNewsHolder(binding.root) {
-    fun bind(data: Item?, onClickItemHomeListener: OnClickItemHomeListener) {
+class NormalNewsHolder(private val binding: ItemNewsHolderBinding) : BaseNewsHolder(binding.root) {
+    fun bind(data: Item?, onClickItemHomeListener: OnClickItemHomeListener? = null) {
         runCatching {
             with(binding) {
                 txtTitle.text = data?.title
                 txtDescription.text = data?.descriptionParse?.textDescription
                 Utility.setImage(context, imgImage, data?.descriptionParse?.imageUrl)
                 root.setOnClickListener {
-                    onClickItemHomeListener.callback(OnClickItemHomeListener.TagClickItemHome.ON_CLICK_ITEM, data)
+                    onClickItemHomeListener?.callback(
+                        OnClickItemHomeListener.TagClickItemHome.ON_CLICK_ITEM,
+                        data
+                    )
                 }
             }
         }.onFailure {
