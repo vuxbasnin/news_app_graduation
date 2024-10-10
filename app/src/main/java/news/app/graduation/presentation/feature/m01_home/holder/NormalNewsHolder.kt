@@ -14,7 +14,7 @@ class NormalNewsHolder(private val binding: ItemNewsHolderBinding): BaseNewsHold
                 txtDescription.text = data?.descriptionParse?.textDescription
                 Utility.setImage(context, imgImage, data?.descriptionParse?.imageUrl)
                 root.setOnClickListener {
-                    onClickItemHomeListener.callback(OnClickItemHomeListener.TagClickItemHome.ON_CLICK_ITEM, data?.link)
+                    onClickItemHomeListener.callback(OnClickItemHomeListener.TagClickItemHome.ON_CLICK_ITEM, data)
                 }
             }
         }.onFailure {

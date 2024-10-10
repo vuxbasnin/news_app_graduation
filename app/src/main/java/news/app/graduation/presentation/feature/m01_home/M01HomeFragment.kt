@@ -9,6 +9,7 @@ import news.app.graduation.core.common.parseRssFeed
 import news.app.graduation.core.common.show
 import news.app.graduation.core.common.visible
 import news.app.graduation.core.utils.Utility
+import news.app.graduation.data.model.response.rss.Item
 import news.app.graduation.databinding.M01HomeFragmentBinding
 import news.app.graduation.presentation.core.base.BaseFragment
 import news.app.graduation.presentation.core.base.CommonState
@@ -66,8 +67,7 @@ class M01HomeFragment : BaseFragment<M01HomeFragmentBinding>(M01HomeFragmentBind
             runCatching {
                 when(tag) {
                     ON_CLICK_ITEM -> {
-                        val result = data as? String
-                        result?.openDetail()
+                        (data as? Item)?.openDetail()
                     }
 
                     NONE -> {

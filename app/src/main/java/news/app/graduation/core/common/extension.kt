@@ -182,6 +182,6 @@ fun View.clickWithThrottle(throttleTime: Long = 600L, action: () -> Unit) {
     })
 }
 
-fun String.openDetail() {
+fun Item.openDetail() {
     NavigationManager.getInstance().openFragment(M05DetailNewsFragment.newInstance(this))
 }

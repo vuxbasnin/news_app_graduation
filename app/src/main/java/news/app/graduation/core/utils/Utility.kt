@@ -2,6 +2,7 @@ package news.app.graduation.core.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.provider.Settings
@@ -91,5 +92,19 @@ object Utility {
         setMarkRead(
             view,
             newsId?.let { PreferenceHelper.get(SAVE_READ_POST, "").contains(it) } ?: false)
+    }
+
+    fun shareInApp(context: Context, url: String?) {
+        try {
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, url)
+            sharingIntent.type = "text/plain"
+            val chooserIntent = Intent.createChooser(sharingIntent, url)
+            chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(chooserIntent)
+        } catch (e: java.lang.Exception) {
+            e.stackTrace
+        }
     }
 }

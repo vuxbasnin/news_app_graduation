@@ -17,7 +17,7 @@ class HeaderNewsHolder(private val binding: ItemHeaderNewsBinding) : BaseNewsHol
                 txtTime.text = data?.pubDate
                 txtDescription.text = data?.descriptionParse?.textDescription
                 root.setOnClickListener {
-                    onClickItemHomeListener.callback(OnClickItemHomeListener.TagClickItemHome.ON_CLICK_ITEM, data?.link)
+                    onClickItemHomeListener.callback(OnClickItemHomeListener.TagClickItemHome.ON_CLICK_ITEM, data)
                 }
             }
         }.onFailure {
