@@ -4,6 +4,7 @@ import androidx.viewpager.widget.ViewPager
 import news.app.graduation.core.utils.DeviceUtil
 import news.app.graduation.data.model.response.rss.Item
 import news.app.graduation.databinding.ItemFocusNewsBinding
+import news.app.graduation.presentation.my_interface.OnClickItemStarListener
 import news.app.graduation.presentation.shared_holder.BaseNewsHolder
 
 class FocusNewsHolder(private val binding: ItemFocusNewsBinding) : BaseNewsHolder(binding.root) {
@@ -14,18 +15,19 @@ class FocusNewsHolder(private val binding: ItemFocusNewsBinding) : BaseNewsHolde
         binding.layoutViewPager.setPadding(0, 0, getPaddingItem, 0)
     }
 
-    fun bind(data: MutableList<Item>) {
+    fun bind(data: MutableList<Item>, onClickItemStarListener: OnClickItemStarListener? = null) {
         val dataPager = mutableListOf<Item>()
         data.let { dataPager.addAll(it) }
-        setUpViewPager(dataPager)
+        setUpViewPager(dataPager, onClickItemStarListener = onClickItemStarListener)
 
         setupViewPagerPadding(dataPager.size)
     }
 
-    private fun setUpViewPager(data: MutableList<Item>, isSetBg: Boolean? = null) {
+    private fun setUpViewPager(data: MutableList<Item>, isSetBg: Boolean? = null, onClickItemStarListener: OnClickItemStarListener? = null) {
         pagerAdapter = ViewPagerFocusAdapter(
             binding.root.context,
-            isSetBg
+            isSetBg,
+            onClickItemStarListener
         )
         pagerAdapter?.setData(data)
         binding.layoutViewPager.adapter = pagerAdapter

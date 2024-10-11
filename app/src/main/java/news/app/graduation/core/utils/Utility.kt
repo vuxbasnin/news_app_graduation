@@ -3,6 +3,7 @@ package news.app.graduation.core.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.provider.Settings
@@ -22,6 +23,7 @@ import news.app.graduation.R
 import news.app.graduation.core.common.markRead
 import news.app.graduation.core.utils.PreferenceHelper.SAVE_READ_POST
 import news.app.graduation.presentation.core.widget.LinearLayoutManagerWrapper
+import kotlin.math.roundToInt
 
 object Utility {
     @SuppressLint("HardwareIds")
@@ -106,5 +108,10 @@ object Utility {
         } catch (e: java.lang.Exception) {
             e.stackTrace
         }
+    }
+
+    fun dpToPx(dp: Float): Int {
+        val density = Resources.getSystem().displayMetrics.density
+        return (dp * density).roundToInt()
     }
 }

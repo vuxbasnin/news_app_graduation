@@ -10,7 +10,15 @@ class AppRepository @Inject constructor(private val apiDataSource: ApiDataSource
         apiDataSource.getDataHome()
     }
 
-    suspend fun getDataStar() = flowSafeApiCall(Dispatchers.IO){
+    suspend fun getDataStar() = flowSafeApiCall(Dispatchers.IO) {
         apiDataSource.getDataStar()
+    }
+
+    suspend fun getDataSport() = flowSafeApiCall(Dispatchers.IO) {
+        apiDataSource.getDataSport()
+    }
+
+    suspend fun getChildCategory(endPoint: String) = flowSafeApiCall(Dispatchers.IO) {
+        apiDataSource.getChildCategory(endPoint)
     }
 }

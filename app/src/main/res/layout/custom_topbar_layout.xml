@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_45"
+    android:clickable="true"
+    android:id="@+id/rel_toolbar"
+    android:background="@color/white"
+    android:focusable="true"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_back_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/size_8"
+        android:padding="@dimen/size_8"
+        app:srcCompat="@drawable/ic_back_multi_media" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title_toolbar_zone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/size_40"
+        android:layout_toEndOf="@id/img_back_custom"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textAllCaps="false"
+        android:textColor="#111111"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        tools:text="Thời sự"/>
+
+</RelativeLayout>

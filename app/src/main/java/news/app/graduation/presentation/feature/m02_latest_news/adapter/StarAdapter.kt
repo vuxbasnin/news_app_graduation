@@ -14,8 +14,9 @@ import news.app.graduation.presentation.feature.m01_home.holder.HeaderNewsHolder
 import news.app.graduation.presentation.feature.m01_home.holder.NormalNewsHolder
 import news.app.graduation.presentation.feature.m02_latest_news.convert.DataStarConvert
 import news.app.graduation.presentation.feature.m02_latest_news.holder.FocusNewsHolder
+import news.app.graduation.presentation.my_interface.OnClickItemStarListener
 
-class StarAdapter(val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class StarAdapter(val context: Context, private val onClickItemStarListener: OnClickItemStarListener) : RecyclerView.Adapter<ViewHolder>() {
     private val listData: MutableList<DataStarConvert> = arrayListOf()
 
     companion object {
@@ -61,15 +62,18 @@ class StarAdapter(val context: Context) : RecyclerView.Adapter<ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listData.getOrNull(position)
         when(holder) {
-            is HeaderNewsHolder -> holder.bind((item as? DataStarConvert.ItemHeader)?.data)
+            is HeaderNewsHolder -> holder.bind(data = (item as? DataStarConvert.ItemHeader)?.data,
+                onClickItemStarListener = onClickItemStarListener)
             is FocusNewsHolder -> (item as? DataStarConvert.ListItemFocus)?.data?.let {
                 holder.bind(
-                    it
+                    data = it,
+                    onClickItemStarListener = onClickItemStarListener
                 )
             }
             is NormalNewsHolder -> (item as? DataStarConvert.ListItemOther)?.data?.let {
                 holder.bind(
-                    (item as? DataStarConvert.ListItemOther)?.data
+                    data = (item as? DataStarConvert.ListItemOther)?.data,
+                    onClickItemStarListener = onClickItemStarListener
                 )
             }
         }

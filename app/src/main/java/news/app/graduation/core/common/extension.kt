@@ -2,6 +2,7 @@ package news.app.graduation.core.common
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
+import android.os.Build
 import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.view.children
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +30,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
+import java.io.Serializable
 import java.io.StringReader
 import kotlin.math.ceil
 
@@ -245,4 +248,12 @@ fun String.subLast(): String {
         this
     else
         substring(0, lastIndex)
+}
+
+@Suppress("UNCHECKED_CAST")
+fun <T : Serializable?> Fragment.getMySerializable(key: String?, clazz: Class<T>): T? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        arguments?.getSerializable(key, clazz)
+    } else
+        arguments?.getSerializable(key) as? T?
 }

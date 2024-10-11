@@ -12,9 +12,12 @@ import news.app.graduation.R
 import news.app.graduation.core.common.setTextCustomEllipsize
 import news.app.graduation.core.utils.Utility
 import news.app.graduation.data.model.response.rss.Item
+import news.app.graduation.presentation.my_interface.OnClickItemStarListener
 
 class ViewPagerFocusAdapter(
-    private val context: Context, private val isSetBg: Boolean? = null,
+    private val context: Context,
+    private val isSetBg: Boolean? = null,
+    private val onClickItemStarListener: OnClickItemStarListener? = null,
 ) : PagerAdapter() {
     private var listData: MutableList<Item>? = null
     private var layoutInflater: LayoutInflater? = null
@@ -58,6 +61,10 @@ class ViewPagerFocusAdapter(
         }
 
         view?.let { markIsRead(it, listData?.getOrNull(position)) }
+
+        view?.setOnClickListener {
+            onClickItemStarListener?.callback(OnClickItemStarListener.TagStar.ON_CLICK_ITEM, listData?.getOrNull(position))
+        }
 
         val viewPager = container as ViewPager
         viewPager.addView(view, 0)

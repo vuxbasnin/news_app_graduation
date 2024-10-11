@@ -8,4 +8,6 @@ class ApiDataSource @Inject constructor(private val newsServiceRetrofit: NewsSer
 
     suspend fun getDataHome() = newsServiceRetrofit.getDataHome()
     suspend fun getDataStar() = newsServiceRetrofit.getDataStar()
+    suspend fun getDataSport() = newsServiceRetrofit.getDataSport()
+    suspend fun getChildCategory(endPoint: String) = newsServiceRetrofit.getChildCategory(endPoint)
 }

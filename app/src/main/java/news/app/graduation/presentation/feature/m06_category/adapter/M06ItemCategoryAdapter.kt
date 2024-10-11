@@ -1,4 +1,4 @@
-package news.app.graduation.presentation.feature.m01_home.adapter
+package news.app.graduation.presentation.feature.m06_category.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,9 +11,8 @@ import news.app.graduation.databinding.ItemHeaderNewsBinding
 import news.app.graduation.databinding.ItemNewsHolderBinding
 import news.app.graduation.presentation.feature.m01_home.holder.HeaderNewsHolder
 import news.app.graduation.presentation.feature.m01_home.holder.NormalNewsHolder
-import news.app.graduation.presentation.my_interface.OnClickItemHomeListener
 
-class HomeAdapter(val context: Context, private val onClickItemHomeListener: OnClickItemHomeListener) : RecyclerView.Adapter<ViewHolder>() {
+class M06ItemCategoryAdapter(val context: Context) : RecyclerView.Adapter<ViewHolder>() {
     companion object {
         const val NEWS_HEADER = 1
         const val NEWS_NORMAL = 2
@@ -52,12 +51,13 @@ class HomeAdapter(val context: Context, private val onClickItemHomeListener: OnC
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = listData.getOrNull(position)
-        when(holder) {
+        when (holder) {
             is HeaderNewsHolder -> {
-                holder.bind(data, onClickItemHomeListener = onClickItemHomeListener)
+                holder.bind(data)
             }
+
             else -> {
-                (holder as? NormalNewsHolder)?.bind(data, onClickItemHomeListener)
+                (holder as? NormalNewsHolder)?.bind(data)
             }
         }
     }

@@ -2,7 +2,7 @@
     <string name="app_name">News App Graduation</string>
     <!-- Strings used for fragments for navigation -->
     <string name="tab_1">Trang chủ</string>
-    <string name="tab_2">Mới nhất</string>
+    <string name="tab_2">Star</string>
     <string name="tab_3">Tin nóng</string>
     <string name="tab_4">Media</string>
 
@@ -18,4 +18,6 @@
     <string name="read_more">Đọc thêm</string>
     <string name="title_news">Đề xuất tăng mức phạt hành vi không công khai giá dịch vụ tại cảng biển</string>
     <string name="description_news">description_news</string>
+    <string name="user_str_category">Chuyên mục</string>
+
 </resources>

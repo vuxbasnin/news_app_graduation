@@ -9,6 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="color_red">#F52943</color>
+    <color name="color_black_45">#454545</color>
+    <color name="color_gray_8B8B">#8B8B8B</color>
+    <color name="gray_FA">#FAFAFA</color>
 
     //app
     <color name="primary">#E40913</color>
@@ -50,4 +53,6 @@
     <color name="dots_indicator_black">#182940</color>
     <color name="dots_indicator_black_default">#80182940</color>
     <color name="color_title_text_182">#182940</color>
+    <color name="color_text_subtitle">@color/color_black_45</color>
+    <color name="color_text_8b_aa">@color/color_gray_8B8B</color>
 </resources>

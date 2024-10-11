@@ -22,8 +22,8 @@ import news.app.graduation.presentation.core.base_adapter.MyViewPagerAdapter
 import news.app.graduation.presentation.core.widget.CustomTab
 import news.app.graduation.presentation.feature.m01_home.M01HomeFragment
 import news.app.graduation.presentation.feature.m02_latest_news.M02StarFragment
-import news.app.graduation.presentation.feature.m03_hot_news.M03HotNewsFragment
-import news.app.graduation.presentation.feature.m04_media.M04MediaFragment
+import news.app.graduation.presentation.feature.m03_hot_news.M03SportNewsFragment
+import news.app.graduation.presentation.feature.m04_menu.M04MenuFragment
 import news.app.graduation.presentation.feature.m05_detail.M05DetailNewsFragment
 
 @AndroidEntryPoint
@@ -57,8 +57,8 @@ class M00MainFragment : BaseTabFragment<M00FragmentMainBinding>(M00FragmentMainB
             when (position) {
                 TAB_0 -> M01HomeFragment()
                 TAB_1 -> M02StarFragment()
-                TAB_2 -> M03HotNewsFragment()
-                TAB_3 -> M04MediaFragment()
+                TAB_2 -> M03SportNewsFragment()
+                TAB_3 -> M04MenuFragment()
                 else -> M05DetailNewsFragment()
             }
         }

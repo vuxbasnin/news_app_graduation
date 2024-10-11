@@ -8,4 +8,5 @@ object Endpoint {
     //home
     const val HOME = "home.rss"
     const val STAR = "star.rss"
+    const val SPORT = "sport.rss"
 }
