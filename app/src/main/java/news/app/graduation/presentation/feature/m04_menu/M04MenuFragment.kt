@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import news.app.graduation.core.common.Constants.DataZoneMenu
 import news.app.graduation.core.common.addDivider
+import news.app.graduation.data.model.response.menu.Category
 import news.app.graduation.data.model.response.menu.ListDataMenu
 import news.app.graduation.data.model.response.menu.Zone
 import news.app.graduation.databinding.M04MediaFragmentBinding
@@ -35,7 +36,14 @@ class M04MenuFragment : BaseFragment<M04MediaFragmentBinding>(M04MediaFragmentBi
         menuAdapter = MenuAdapter(requireActivity(), onClickMenuListener)
         binding.rcvMenu.adapter = menuAdapter
         binding.rcvMenu.addDivider()
+        addZoneToFirstItem()
         menuAdapter?.setData(listData.zones)
+    }
+
+    private fun addZoneToFirstItem() {
+        listData.zones.forEachIndexed { index, zone ->
+            zone.categories.add(0, Category(name = zone.title, rss_url = zone.zone_url))
+        }
     }
 
     private val onClickMenuListener = object : OnClickMenuListener {
@@ -48,14 +56,8 @@ class M04MenuFragment : BaseFragment<M04MediaFragmentBinding>(M04MediaFragmentBi
                 OnClickMenuListener.TagMenu.ON_CLICK_ITEM -> {
                     val mData = data as OnClickMenuListener.CategorySelected?
                     NavigationManager.getInstance().openFragment(
-                        M06CategoryFragment.newInstance(mData?.parentCategory, mData?.selectedCategory)
+                        M06CategoryFragment.newInstance(mData?.parentCategory, mData?.selectedCategory, mData?.positionSelected)
                     )
-                }
-
-                OnClickMenuListener.TagMenu.ON_CLICK_ITEM_CHILD -> {
-//                    NavigationManager.getInstance().openFragment(
-//                        M06CategoryFragment.newInstance((data as? Zone))
-//                    )
                 }
             }
         }

@@ -83,12 +83,12 @@ android {
         create("development") {
             dimension = "environment"
             manifestPlaceholders["appLabel"] = "News App Graduation Debug"
-            buildConfigField("String", "BASE_URL", "\"https://kenh14.vn/rss/\"")
+            buildConfigField("String", "BASE_URL", "\"https://kenh14.vn/\"")
         }
         create("production") {
             dimension = "environment"
             manifestPlaceholders["appLabel"] = "News App Graduation"
-            buildConfigField("String", "BASE_URL", "\"https://kenh14.vn/rss/\"")
+            buildConfigField("String", "BASE_URL", "\"https://kenh14.vn/\"")
         }
     }
 }

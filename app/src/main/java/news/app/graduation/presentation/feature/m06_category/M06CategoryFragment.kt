@@ -24,15 +24,18 @@ class M06CategoryFragment :
     private var pagerAdapter: MyViewPagerAdapter<Category, M06ItemCategoryFragment>? = null
     private var dataZone: Zone? = null
     private var dataZoneSelected: Zone? = null
+    private var positionSelected: Int? = null
     private var listCategoryData: ArrayList<Category> = arrayListOf()
 
     companion object {
         private const val ZONE = "ZONE"
         private const val ZONE_SELECTED = "ZONE_SELECTED"
-        fun newInstance(data: Zone?, dataSelected: Zone?): M06CategoryFragment {
+        private const val POSITION_SELECTED = "POSITION_SELECTED"
+        fun newInstance(data: Zone?, dataSelected: Zone?, positionSelected: Int? = null): M06CategoryFragment {
             val args = Bundle()
             args.putSerializable(ZONE, data)
             args.putSerializable(ZONE_SELECTED, dataSelected)
+            args.putInt(POSITION_SELECTED, positionSelected ?: 0)
             val fragment = M06CategoryFragment()
             fragment.arguments = args
             return fragment
@@ -42,6 +45,7 @@ class M06CategoryFragment :
     override fun initArgs() {
         dataZone = getMySerializable(ZONE, Zone::class.java)
         dataZoneSelected = getMySerializable(ZONE_SELECTED, Zone::class.java)
+        positionSelected = arguments?.getInt(POSITION_SELECTED, 0)
         listCategoryData = dataZone?.categories ?: arrayListOf()
     }
 
@@ -51,7 +55,6 @@ class M06CategoryFragment :
 
     private fun bindView() {
         binding.rlTitle.tvTitleToolbarZone.text = dataZone?.title?: ""
-        listCategoryData.add(0, Category(name = dataZone?.title, rss_url = dataZone?.zone_url))
         pagerAdapter = MyViewPagerAdapter(this, listCategoryData) { categories, _ ->
             M06ItemCategoryFragment.newInstance(categories.rss_url ?: "")
         }
@@ -73,18 +76,11 @@ class M06CategoryFragment :
 
         })
         binding.rlTitle.imgBackCustom.setOnClickListener(this)
-//        pagerAdapter?.notifyDataSetChanged()
         TabLayoutMediator(binding.tabLayoutCategory, binding.tabCategoryViewPager) { tab, position ->
             tab.customView = getCustomViewTab(listCategoryData[position])
         }.attach()
         binding.tabLayoutCategory.visible(listCategoryData.size > 1)
-        //add parent zone
-        listCategoryData.forEachIndexed { index, category ->
-//            if (dataZoneSelected?.Id == category.Id) {
-//                binding.tabCategoryViewPager.setCurrentItem(index, false)
-//                return@forEachIndexed
-//            }
-        }
+        if (positionSelected != 0) bindingOrNull?.tabCategoryViewPager?.setCurrentItem(positionSelected ?: 0, false)
     }
 
     override fun initObserver() {

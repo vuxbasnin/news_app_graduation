@@ -23,19 +23,22 @@ class CategoryHolder(
                 binding.imgShowChild.hide()
             } else {
                 binding.imgShowChild.show()
-                data?.categories?.forEach { categories ->
-                    val textView = TextView(context)
-                    categories.name?.let { it1 -> textView.text = it1 }
-                    textView.setTextAppearance(R.style.TextInter16SubTitleRegular400)
-                    val param = ActionBar.LayoutParams(
-                        ActionBar.LayoutParams.MATCH_PARENT,
-                        ActionBar.LayoutParams.WRAP_CONTENT
-                    )
-                    param.setMargins(0, 0, 0, Utility.dpToPx(20F))
-                    textView.layoutParams = param
-                    binding.wrapElementChild.addView(textView)
-                    textView.setOnClickListener {
-                        onClickMenuListener.callback(OnClickMenuListener.TagMenu.ON_CLICK_ITEM_CHILD, categories)
+                data?.categories?.forEachIndexed { index, categories ->
+                    if (index != 0) {
+                        val textView = TextView(context)
+                        categories.name?.let { it1 -> textView.text = it1 }
+                        textView.setTextAppearance(R.style.TextInter16SubTitleRegular400)
+                        val param = ActionBar.LayoutParams(
+                            ActionBar.LayoutParams.MATCH_PARENT,
+                            ActionBar.LayoutParams.WRAP_CONTENT
+                        )
+                        param.setMargins(0, 0, 0, Utility.dpToPx(20F))
+                        textView.layoutParams = param
+                        binding.wrapElementChild.addView(textView)
+                        textView.setOnClickListener {
+                            onClickMenuListener.callback(OnClickMenuListener.TagMenu.ON_CLICK_ITEM,
+                                OnClickMenuListener.CategorySelected(data, data, index)
+                            )                    }
                     }
                 }
             }

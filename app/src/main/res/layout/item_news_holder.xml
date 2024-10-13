@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_16"
-    android:layout_marginHorizontal="@dimen/padding_item">
+    android:paddingTop="@dimen/size_16"
+    android:paddingHorizontal="@dimen/padding_item"
+    android:background="@color/color_bg_f6">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ctl_top_readmore_dettail"

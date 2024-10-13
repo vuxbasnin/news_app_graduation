@@ -7,10 +7,8 @@ interface OnClickMenuListener {
 
     enum class TagMenu {
         NONE,
-        ON_CLICK_ITEM,
-        ON_CLICK_ITEM_CHILD
+        ON_CLICK_ITEM
     }
 
-    data class CategorySelected(val parentCategory: Zone?, val selectedCategory: Zone?)
-
+    data class CategorySelected(val parentCategory: Zone?, val selectedCategory: Zone?, val positionSelected: Int? = null)
 }
