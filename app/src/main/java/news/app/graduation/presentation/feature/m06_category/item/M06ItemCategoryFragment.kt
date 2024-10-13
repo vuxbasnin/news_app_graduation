@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import news.app.graduation.core.common.hide
 import news.app.graduation.core.common.parseRssFeed
+import news.app.graduation.core.common.show
 import news.app.graduation.core.utils.Utility
 import news.app.graduation.databinding.M06FragmentItemCategoryBinding
 import news.app.graduation.presentation.core.base.BaseFragment
@@ -51,10 +53,11 @@ class M06ItemCategoryFragment :
         viewModel.m06ItemCategoryState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is CommonState.Loading -> {
-
+                    showLoading()
                 }
 
                 is CommonState.Success -> {
+                    hideLoading()
                     state.data.parseRssFeed()?.items?.let { m06ItemCategoryAdapter?.setData(it) }
                 }
 
@@ -72,6 +75,16 @@ class M06ItemCategoryFragment :
     override fun resetData() {
         m06ItemCategoryAdapter?.setData(arrayListOf())
         viewModel.getData(endPoint ?: "")
+    }
+
+    private fun showLoading() {
+        bindingOrNull?.swipeRefresh?.isRefreshing = true
+        bindingOrNull?.loading?.container.show()
+    }
+
+    private fun hideLoading() {
+        bindingOrNull?.swipeRefresh?.isRefreshing = false
+        bindingOrNull?.loading?.container.hide()
     }
 
     override fun onClick(v: View?) {

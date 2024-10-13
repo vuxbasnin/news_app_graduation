@@ -51,6 +51,7 @@ class M06CategoryFragment :
 
     private fun bindView() {
         binding.rlTitle.tvTitleToolbarZone.text = dataZone?.title?: ""
+        listCategoryData.add(0, Category(name = dataZone?.title, rss_url = dataZone?.zone_url))
         pagerAdapter = MyViewPagerAdapter(this, listCategoryData) { categories, _ ->
             M06ItemCategoryFragment.newInstance(categories.rss_url ?: "")
         }
@@ -72,11 +73,12 @@ class M06CategoryFragment :
 
         })
         binding.rlTitle.imgBackCustom.setOnClickListener(this)
-        pagerAdapter?.notifyDataSetChanged()
+//        pagerAdapter?.notifyDataSetChanged()
         TabLayoutMediator(binding.tabLayoutCategory, binding.tabCategoryViewPager) { tab, position ->
             tab.customView = getCustomViewTab(listCategoryData[position])
         }.attach()
         binding.tabLayoutCategory.visible(listCategoryData.size > 1)
+        //add parent zone
         listCategoryData.forEachIndexed { index, category ->
 //            if (dataZoneSelected?.Id == category.Id) {
 //                binding.tabCategoryViewPager.setCurrentItem(index, false)
