@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
 import news.app.graduation.core.common.hide
 import news.app.graduation.core.common.openDetail
 import news.app.graduation.core.common.show
+import news.app.graduation.core.utils.PreferenceHelper
+import news.app.graduation.core.utils.PreferenceHelper.SAVE_READ_POST
 import news.app.graduation.core.utils.Utility
 import news.app.graduation.data.model.response.rss.Image
 import news.app.graduation.data.model.response.rss.Item
@@ -30,15 +32,18 @@ class M05DetailNewsFragment :
     BaseFragment<M05DetailFragmentBinding>(M05DetailFragmentBinding::inflate), OnClickBottomDetailNative {
     private var url: String? = null
     private var title: String? = null
+    private var newsId: String? = null
 
     companion object {
         const val URL = "URL"
         const val TITLE = "TITLE"
+        const val NEWS_ID = "NEWS_ID"
 
         fun newInstance(dataDetail: Item): M05DetailNewsFragment {
             val args = Bundle()
             args.putString(URL, dataDetail.link)
             args.putString(TITLE, dataDetail.title)
+            args.putString(NEWS_ID, dataDetail.newsId)
             val fragment = M05DetailNewsFragment()
             fragment.arguments = args
             return fragment
@@ -49,6 +54,7 @@ class M05DetailNewsFragment :
         super.initArgs()
         url = arguments?.getString(URL)
         title = arguments?.getString(TITLE)
+        newsId = arguments?.getString(NEWS_ID)
     }
 
     override fun initView() {
@@ -101,6 +107,19 @@ class M05DetailNewsFragment :
             bindingOrNull?.ctlTopDetail.show()
             bindingOrNull?.txtZoneSapo?.text = title
         }
+        markReadLocal()
+    }
+
+    private fun markReadLocal() {
+        var readList = PreferenceHelper.get(SAVE_READ_POST, "")
+        if (!readList.contains(newsId.toString())) {
+            readList = "$readList$newsId;"
+        }
+        val arr = readList.split(";")
+        if (arr.size > 100) {
+            readList = readList.substring(readList.indexOf(";") + 1)
+        }
+        PreferenceHelper.setValue(SAVE_READ_POST, readList)
     }
 
     override fun initObserver() {

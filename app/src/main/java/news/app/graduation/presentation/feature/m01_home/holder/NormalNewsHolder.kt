@@ -42,7 +42,9 @@ class NormalNewsHolder(private val binding: ItemNewsHolderBinding) : BaseNewsHol
                         OnClickItemCategory.TagCategory.ON_CLICK_ITEM,
                         data
                     )
+                    markRead()
                 }
+                markIsRead(data)
             }
         }.onFailure {
             it.printStackTrace()

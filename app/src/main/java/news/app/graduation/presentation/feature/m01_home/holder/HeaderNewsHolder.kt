@@ -37,7 +37,9 @@ class HeaderNewsHolder(private val binding: ItemHeaderNewsBinding) : BaseNewsHol
                         OnClickItemCategory.TagCategory.ON_CLICK_ITEM,
                         data
                     )
+                    markRead()
                 }
+                markIsRead(data)
             }
         }.onFailure {
             it.printStackTrace()
