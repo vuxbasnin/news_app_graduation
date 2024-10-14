@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import news.app.graduation.data.local.entity.NewsLocal
 import news.app.graduation.databinding.ItemBigNewsBinding
+import news.app.graduation.presentation.my_interface.OnClickReadOrSave
 import news.app.graduation.presentation.shared_holder.BigNewsViewHolder
 
-class PersonalAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PersonalAdapter(val context: Context, private val onClickReadOrSave: OnClickReadOrSave? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData: MutableList<NewsLocal> = arrayListOf()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -27,7 +28,8 @@ class PersonalAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.
                 inflate,
                 parent,
                 false
-            )
+            ),
+            onClickReadOrSave
         )
     }
 

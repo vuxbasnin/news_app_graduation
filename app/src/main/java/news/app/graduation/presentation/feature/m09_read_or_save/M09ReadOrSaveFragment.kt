@@ -5,14 +5,17 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import news.app.graduation.core.common.openDetail
 import news.app.graduation.core.utils.Utility
 import news.app.graduation.data.local.dao.NewsUrlDao
 import news.app.graduation.data.local.database.AppLocalDatabase
 import news.app.graduation.data.local.entity.NewsLocal
+import news.app.graduation.data.model.response.rss.Item
 import news.app.graduation.databinding.M09ReadOrSaveFragmentBinding
 import news.app.graduation.presentation.NavigationManager
 import news.app.graduation.presentation.core.base.BaseFragment
 import news.app.graduation.presentation.feature.m09_read_or_save.adapter.PersonalAdapter
+import news.app.graduation.presentation.my_interface.OnClickReadOrSave
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -54,7 +57,7 @@ class M09ReadOrSaveFragment: BaseFragment<M09ReadOrSaveFragmentBinding>(M09ReadO
 
     private fun setupRecyclerView() {
         bindingOrNull?.rcvNews?.layoutManager = Utility.getLayoutVertical(context)
-        adapter = PersonalAdapter(requireActivity())
+        adapter = PersonalAdapter(requireActivity(), onClickReadOrSave)
         binding.rcvNews.adapter = adapter
     }
 
@@ -66,6 +69,16 @@ class M09ReadOrSaveFragment: BaseFragment<M09ReadOrSaveFragmentBinding>(M09ReadO
                 newsUrlDao?.getAllNewsSave() ?: mutableListOf()
             }
             adapter?.setData(listData ?: mutableListOf())
+        }
+    }
+
+    private val onClickReadOrSave = object : OnClickReadOrSave {
+        override fun callback(tag: OnClickReadOrSave.TagReadOrSave, data: Any?) {
+            when(tag) {
+                OnClickReadOrSave.TagReadOrSave.ON_CLICK_ITEM -> {
+                    (data as? Item)?.openDetail()
+                }
+            }
         }
     }
 

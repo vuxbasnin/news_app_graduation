@@ -107,6 +107,9 @@ class M05DetailNewsFragment :
             bindingOrNull?.ctlTopDetail.show()
             bindingOrNull?.txtZoneSapo?.text = data?.title
         }
+        bindingOrNull?.btnDetailHome?.setOnClickListener {
+            NavigationManager.getInstance().popToHome()
+        }
         markReadLocal()
         addNewsUrlToDatabase(data)
     }
