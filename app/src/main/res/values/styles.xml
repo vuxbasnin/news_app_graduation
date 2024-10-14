@@ -98,4 +98,10 @@
         <item name="android:textColor">@color/color_text_title</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
     </style>
+
+    <style name="TextMerri14TitleBold700">
+        <item name="fontFamily">@font/merriweather_bold_700</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textColor">@color/color_title_text_1B</item>
+    </style>
 </resources>

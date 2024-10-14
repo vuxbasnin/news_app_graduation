@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rel_toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/size_45"
-    android:clickable="true"
-    android:id="@+id/rel_toolbar"
     android:background="@color/white"
-    android:focusable="true"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:clickable="true"
+    android:focusable="true">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_back_custom"
@@ -33,6 +33,6 @@
         android:textColor="#111111"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        tools:text="Thời sự"/>
+        tools:text="Thời sự" />
 
 </RelativeLayout>

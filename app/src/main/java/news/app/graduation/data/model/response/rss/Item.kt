@@ -5,6 +5,7 @@ import news.app.graduation.core.common.parseRssDescription
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Path
 import org.simpleframework.xml.Root
+import java.io.Serializable
 
 @Root(name = "item", strict = false)
 data class Item(
@@ -25,7 +26,7 @@ data class Item(
 
     @field:Element(name = "guid", data = true)
     var guid: String = ""
-) {
+): Serializable {
     val indexLast = link.lastIndexOf("-")
     val indexLastDot = link.lastIndexOf(".")
     val newsId = link.substring(indexLast + 1, indexLastDot)

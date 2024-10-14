@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/size_16">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/padding_item"
+        android:layout_marginTop="@dimen/padding_item"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="16:10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgItem">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTitle"
+            style="@style/TextMerri18TitleBold700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_item"
+            android:layout_marginTop="@dimen/size_10"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_item"
+            android:layout_marginTop="@dimen/size_10"
+            android:fontFamily="@font/inter_medium_500"
+            android:textColor="@color/color_title_text_777"
+            android:textSize="@dimen/size_14"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtDescription"
+            style="@style/TextInter14DescriptionRegular400"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_item"
+            android:layout_marginTop="@dimen/size_10"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:textColorLink="@color/primary"
+            android:textDirection="ltr"
+            android:visibility="visible"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:text="@string/description_header" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            android:layout_marginHorizontal="@dimen/padding_item"
+            android:layout_marginTop="@dimen/size_20"
+            android:background="@color/color_line_e6"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,39 +11,36 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import news.app.graduation.core.common.getMySerializable
 import news.app.graduation.core.common.hide
-import news.app.graduation.core.common.openDetail
 import news.app.graduation.core.common.show
 import news.app.graduation.core.utils.PreferenceHelper
 import news.app.graduation.core.utils.PreferenceHelper.SAVE_READ_POST
 import news.app.graduation.core.utils.Utility
-import news.app.graduation.data.model.response.rss.Image
+import news.app.graduation.data.local.dao.NewsUrlDao
+import news.app.graduation.data.local.database.AppLocalDatabase
+import news.app.graduation.data.local.entity.NewsLocal
 import news.app.graduation.data.model.response.rss.Item
 import news.app.graduation.databinding.M05DetailFragmentBinding
 import news.app.graduation.presentation.NavigationManager
 import news.app.graduation.presentation.core.base.BaseFragment
 import news.app.graduation.presentation.my_interface.OnClickBottomDetailNative
-import timber.log.Timber
 
 @AndroidEntryPoint
 class M05DetailNewsFragment :
-    BaseFragment<M05DetailFragmentBinding>(M05DetailFragmentBinding::inflate), OnClickBottomDetailNative {
-    private var url: String? = null
-    private var title: String? = null
-    private var newsId: String? = null
+    BaseFragment<M05DetailFragmentBinding>(M05DetailFragmentBinding::inflate),
+    OnClickBottomDetailNative {
+    private var data: Item? = null
+    private var newsUrlDao: NewsUrlDao? = null
 
     companion object {
-        const val URL = "URL"
-        const val TITLE = "TITLE"
-        const val NEWS_ID = "NEWS_ID"
+        const val DATA = "DATA"
 
         fun newInstance(dataDetail: Item): M05DetailNewsFragment {
             val args = Bundle()
-            args.putString(URL, dataDetail.link)
-            args.putString(TITLE, dataDetail.title)
-            args.putString(NEWS_ID, dataDetail.newsId)
+            args.putSerializable(DATA, dataDetail)
             val fragment = M05DetailNewsFragment()
             fragment.arguments = args
             return fragment
@@ -52,9 +49,7 @@ class M05DetailNewsFragment :
 
     override fun initArgs() {
         super.initArgs()
-        url = arguments?.getString(URL)
-        title = arguments?.getString(TITLE)
-        newsId = arguments?.getString(NEWS_ID)
+        data = getMySerializable(DATA, Item::class.java)
     }
 
     override fun initView() {
@@ -74,7 +69,10 @@ class M05DetailNewsFragment :
 
         // Set WebViewClient to handle loading within WebView
         bindingOrNull?.detailWebview?.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?,
+            ): Boolean {
                 return false
             }
         }
@@ -84,7 +82,8 @@ class M05DetailNewsFragment :
 
         // Enable caching
         webSettings?.cacheMode = WebSettings.LOAD_DEFAULT
-        bindingOrNull?.detailWebview?.settings?.domStorageEnabled = true  // Enable DOM storage for modern web apps
+        bindingOrNull?.detailWebview?.settings?.domStorageEnabled =
+            true  // Enable DOM storage for modern web apps
 
         // Enable cookies
         val cookieManager = CookieManager.getInstance()
@@ -99,27 +98,37 @@ class M05DetailNewsFragment :
     }
 
     private fun bindView() {
+        newsUrlDao = AppLocalDatabase.getDatabase(requireContext()).newsUrlDao()
         binding.ctlBottomDetail.eventListener = this
-        bindingOrNull?.detailWebview?.loadUrl(url ?: "")
-        if (title.isNullOrEmpty()) {
+        bindingOrNull?.detailWebview?.loadUrl(data?.link ?: "")
+        if (data?.title.isNullOrEmpty()) {
             bindingOrNull?.ctlTopDetail.hide()
         } else {
             bindingOrNull?.ctlTopDetail.show()
-            bindingOrNull?.txtZoneSapo?.text = title
+            bindingOrNull?.txtZoneSapo?.text = data?.title
         }
         markReadLocal()
+        addNewsUrlToDatabase(data)
     }
 
     private fun markReadLocal() {
         var readList = PreferenceHelper.get(SAVE_READ_POST, "")
-        if (!readList.contains(newsId.toString())) {
-            readList = "$readList$newsId;"
+        if (!readList.contains(data?.newsId.toString())) {
+            readList = "$readList${data?.newsId};"
         }
         val arr = readList.split(";")
         if (arr.size > 100) {
             readList = readList.substring(readList.indexOf(";") + 1)
         }
         PreferenceHelper.setValue(SAVE_READ_POST, readList)
+    }
+
+    private fun addNewsUrlToDatabase(dataDetail: Item?) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            dataDetail?.run {
+                newsUrlDao?.insertNewsUrl(NewsLocal(newsUrl = link, title = title, description = descriptionParse.textDescription, imageUrl = descriptionParse.imageUrl))
+            }
+        }
     }
 
     override fun initObserver() {
@@ -152,6 +161,6 @@ class M05DetailNewsFragment :
     }
 
     override fun onClickShare() {
-        Utility.shareInApp(requireContext(), url)
+        Utility.shareInApp(requireContext(), data?.link)
     }
 }

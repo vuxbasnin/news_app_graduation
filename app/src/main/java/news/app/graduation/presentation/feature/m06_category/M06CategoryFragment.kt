@@ -12,6 +12,7 @@ import news.app.graduation.data.model.response.menu.Category
 import news.app.graduation.data.model.response.menu.Zone
 import news.app.graduation.data.model.response.rss.Item
 import news.app.graduation.databinding.M06CategoryFragmentBinding
+import news.app.graduation.presentation.NavigationManager
 import news.app.graduation.presentation.core.base.BaseFragment
 import news.app.graduation.presentation.core.base_adapter.MyViewPagerAdapter
 import news.app.graduation.presentation.core.widget.CustomTabCategory
@@ -81,6 +82,9 @@ class M06CategoryFragment :
         }.attach()
         binding.tabLayoutCategory.visible(listCategoryData.size > 1)
         if (positionSelected != 0) bindingOrNull?.tabCategoryViewPager?.setCurrentItem(positionSelected ?: 0, false)
+        bindingOrNull?.rlTitle?.imgBackCustom?.setOnClickListener {
+            NavigationManager.getInstance().popBackStack()
+        }
     }
 
     override fun initObserver() {

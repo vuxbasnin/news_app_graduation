@@ -17,6 +17,7 @@ import news.app.graduation.core.common.Constants.TabMain.TAB_2
 import news.app.graduation.core.common.Constants.TabMain.TAB_3
 import news.app.graduation.core.common.reduceDragSensitivity
 import news.app.graduation.databinding.M00FragmentMainBinding
+import news.app.graduation.presentation.NavigationManager
 import news.app.graduation.presentation.core.base.BaseTabFragment
 import news.app.graduation.presentation.core.base_adapter.MyViewPagerAdapter
 import news.app.graduation.presentation.core.widget.CustomTab
@@ -25,9 +26,11 @@ import news.app.graduation.presentation.feature.m02_latest_news.M02StarFragment
 import news.app.graduation.presentation.feature.m03_hot_news.M03SportNewsFragment
 import news.app.graduation.presentation.feature.m04_menu.M04MenuFragment
 import news.app.graduation.presentation.feature.m05_detail.M05DetailNewsFragment
+import news.app.graduation.presentation.feature.m08_personal.M08PersonalFragment
+import news.app.graduation.presentation.my_interface.OnClickCustomTopBar
 
 @AndroidEntryPoint
-class M00MainFragment : BaseTabFragment<M00FragmentMainBinding>(M00FragmentMainBinding::inflate) {
+class M00MainFragment : BaseTabFragment<M00FragmentMainBinding>(M00FragmentMainBinding::inflate), OnClickCustomTopBar {
     data class MainTabData(
         @DrawableRes val icon: Int,
         @DrawableRes val iconSelected: Int,
@@ -53,6 +56,7 @@ class M00MainFragment : BaseTabFragment<M00FragmentMainBinding>(M00FragmentMainB
     override fun getViewPager(): ViewPager2 = binding.pager
 
     override fun initView() {
+        binding.layoutTopbar.setCallBack(this)
         pagerAdapter = MyViewPagerAdapter(this, listTab) { _, position ->
             when (position) {
                 TAB_0 -> M01HomeFragment()
@@ -109,5 +113,13 @@ class M00MainFragment : BaseTabFragment<M00FragmentMainBinding>(M00FragmentMainB
         tab.setDrawable(image, imageSelected)
         tab.text.text = text
         return tab
+    }
+
+    override fun onClickNotify() {
+
+    }
+
+    override fun onClickMenu() {
+        NavigationManager.getInstance().openFragment(M08PersonalFragment.newInstance())
     }
 }
