@@ -11,6 +11,7 @@ import news.app.graduation.core.utils.Utility
 import news.app.graduation.data.model.response.menu.Zone
 import news.app.graduation.databinding.ItemCategoryMenuBinding
 import news.app.graduation.presentation.my_interface.OnClickMenuListener
+import timber.log.Timber
 
 class CategoryHolder(
     private val binding: ItemCategoryMenuBinding,
@@ -19,9 +20,12 @@ class CategoryHolder(
     fun bind(data: Zone?, onClickMenuListener: OnClickMenuListener) {
         runCatching {
             binding.tvTitle.text = data?.title
-            if (data?.categories.isNullOrEmpty()) {
+            if ((data?.categories?.size ?: 0) < 2) {
                 binding.imgShowChild.hide()
             } else {
+                if (binding.wrapElementChild.childCount != 0) {
+                    binding.wrapElementChild.removeAllViews()
+                }
                 binding.imgShowChild.show()
                 data?.categories?.forEachIndexed { index, categories ->
                     if (index != 0) {

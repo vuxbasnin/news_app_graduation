@@ -8,10 +8,14 @@ import news.app.graduation.core.common.hide
 import news.app.graduation.core.common.parseRssFeed
 import news.app.graduation.core.common.show
 import news.app.graduation.core.utils.Utility
+import news.app.graduation.data.model.response.rss.Item
 import news.app.graduation.databinding.M06FragmentItemCategoryBinding
+import news.app.graduation.presentation.NavigationManager
 import news.app.graduation.presentation.core.base.BaseFragment
 import news.app.graduation.presentation.core.base.CommonState
+import news.app.graduation.presentation.feature.m05_detail.M05DetailNewsFragment
 import news.app.graduation.presentation.feature.m06_category.adapter.M06ItemCategoryAdapter
+import news.app.graduation.presentation.my_interface.OnClickItemCategory
 
 @AndroidEntryPoint
 class M06ItemCategoryFragment :
@@ -42,11 +46,26 @@ class M06ItemCategoryFragment :
 
     private fun setUpAdapter() {
         bindingOrNull?.rcvListNewsCategory?.layoutManager = Utility.getLayoutVertical(context)
-        m06ItemCategoryAdapter = M06ItemCategoryAdapter(requireContext())
+        m06ItemCategoryAdapter = M06ItemCategoryAdapter(requireContext(), onClickItemCategory)
         bindingOrNull?.rcvListNewsCategory?.adapter = m06ItemCategoryAdapter
         bindingOrNull?.swipeRefresh?.setOnRefreshListener {
             resetData()
         }
+    }
+
+    private val onClickItemCategory = object :OnClickItemCategory {
+        override fun callback(tag: OnClickItemCategory.TagCategory, data: Any?) {
+            when(tag) {
+                OnClickItemCategory.TagCategory.ON_CLICK_ITEM -> {
+                    NavigationManager.getInstance().openFragment(M05DetailNewsFragment.newInstance((data as? Item) ?: Item()))
+                }
+
+                else -> {
+
+                }
+            }
+        }
+
     }
 
     override fun initObserver() {

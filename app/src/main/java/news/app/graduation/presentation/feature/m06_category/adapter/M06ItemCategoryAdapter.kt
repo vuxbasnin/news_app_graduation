@@ -11,8 +11,9 @@ import news.app.graduation.databinding.ItemHeaderNewsBinding
 import news.app.graduation.databinding.ItemNewsHolderBinding
 import news.app.graduation.presentation.feature.m01_home.holder.HeaderNewsHolder
 import news.app.graduation.presentation.feature.m01_home.holder.NormalNewsHolder
+import news.app.graduation.presentation.my_interface.OnClickItemCategory
 
-class M06ItemCategoryAdapter(val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class M06ItemCategoryAdapter(val context: Context, val onClickItemCategory: OnClickItemCategory? = null) : RecyclerView.Adapter<ViewHolder>() {
     companion object {
         const val NEWS_HEADER = 1
         const val NEWS_NORMAL = 2
@@ -53,11 +54,11 @@ class M06ItemCategoryAdapter(val context: Context) : RecyclerView.Adapter<ViewHo
         val data = listData.getOrNull(position)
         when (holder) {
             is HeaderNewsHolder -> {
-                holder.bind(data)
+                holder.bind(data, onClickItemCategory = onClickItemCategory)
             }
 
             else -> {
-                (holder as? NormalNewsHolder)?.bind(data)
+                (holder as? NormalNewsHolder)?.bind(data, onClickItemCategory = onClickItemCategory)
             }
         }
     }

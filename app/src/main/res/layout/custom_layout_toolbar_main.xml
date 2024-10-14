@@ -20,8 +20,7 @@
             android:layout_height="@dimen/size_40"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_tab_media" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv1"
@@ -68,6 +67,7 @@
                 android:layout_height="25dp"
                 android:layout_marginEnd="10dp"
                 android:padding="3dp"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -93,7 +93,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:padding="3dp"
-            app:srcCompat="@drawable/ic_menu_topbar" />
+            app:srcCompat="@drawable/ic_personal" />
 
     </LinearLayout>
 

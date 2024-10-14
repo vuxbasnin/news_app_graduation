@@ -35,16 +35,16 @@ class M00MainFragment : BaseTabFragment<M00FragmentMainBinding>(M00FragmentMainB
     )
 
     private val listTab = listOf(
-        MainTabData(R.drawable.ic_tab_home, R.drawable.ic_tab_home, R.string.tab_1),
-        MainTabData(R.drawable.ic_tab_latest_news, R.drawable.ic_tab_latest_news, R.string.tab_2),
+        MainTabData(R.drawable.ic_tab_home, R.drawable.ic_tab_home_selected, R.string.tab_1),
+        MainTabData(R.drawable.ic_tab_star, R.drawable.ic_tab_star_selected, R.string.tab_2),
         MainTabData(
-            R.drawable.ic_tab_hot_news,
-            R.drawable.ic_tab_hot_news,
+            R.drawable.ic_tab_sport,
+            R.drawable.ic_tab_sport_selected,
             R.string.tab_3
         ),
         MainTabData(
-            R.drawable.ic_tab_media,
-            R.drawable.ic_tab_media,
+            R.drawable.ic_tab_menu,
+            R.drawable.ic_tab_menu_selected,
             R.string.tab_4
         ),
     )
