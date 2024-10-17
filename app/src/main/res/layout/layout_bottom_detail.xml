@@ -75,18 +75,17 @@
             android:layout_weight="1"
             android:paddingTop="@dimen/size_20"
             android:paddingBottom="@dimen/size_20"
-            android:visibility="visible"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_detail_change_text" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_detail_comment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-
             android:layout_weight="1"
             android:paddingTop="@dimen/size_20"
             android:paddingBottom="@dimen/size_20"
-            android:visibility="visible"
+            android:visibility="gone"
             app:srcCompat="@drawable/icon_comment_line" />
 
 
