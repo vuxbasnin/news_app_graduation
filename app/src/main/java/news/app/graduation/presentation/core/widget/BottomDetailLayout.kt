@@ -7,14 +7,14 @@ import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import news.app.graduation.R
-import news.app.graduation.core.utils.PreferenceHelper
 import news.app.graduation.databinding.LayoutBottomDetailBinding
 import news.app.graduation.presentation.my_interface.OnClickBottomDetailNative
+import timber.log.Timber
 
 class BottomDetailLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     var eventListener: OnClickBottomDetailNative? = null
-    private var binding: LayoutBottomDetailBinding? = null
+    var binding: LayoutBottomDetailBinding? = null
     private var isShow = false
 
     init {
@@ -25,10 +25,12 @@ class BottomDetailLayout @JvmOverloads constructor(context: Context, attrs: Attr
          binding?.imgDetailChangeText?.visibility = INVISIBLE
     }
 
-    fun setBookMark(isAdd: Boolean) {
+    fun setSaveNews(isAdd: Boolean) {
         if (isAdd) {
+            Timber.d("NINVB => da luu")
             binding?.imgDetailSaveNews?.setImageResource(R.drawable.ic_detail_save_news_add)
         } else {
+            Timber.d("NINVB => chua luu")
             binding?.imgDetailSaveNews?.setImageResource(R.drawable.ic_detail_save_news)
         }
     }

@@ -12,7 +12,9 @@ import android.webkit.WebViewClient
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import news.app.graduation.core.common.getMySerializable
 import news.app.graduation.core.common.hide
 import news.app.graduation.core.common.show
@@ -27,6 +29,7 @@ import news.app.graduation.databinding.M05DetailFragmentBinding
 import news.app.graduation.presentation.NavigationManager
 import news.app.graduation.presentation.core.base.BaseFragment
 import news.app.graduation.presentation.my_interface.OnClickBottomDetailNative
+import timber.log.Timber
 
 @AndroidEntryPoint
 class M05DetailNewsFragment :
@@ -110,8 +113,14 @@ class M05DetailNewsFragment :
         bindingOrNull?.btnDetailHome?.setOnClickListener {
             NavigationManager.getInstance().popToHome()
         }
+        addNewsUrlToDatabase()
+        lifecycleScope.launch {
+            val isSaved = checkSaveNews() == true
+            Timber.d("NINVB => check is saved bind $isSaved")
+            bindingOrNull?.ctlBottomDetail?.setSaveNews(checkSaveNews() ?: false)
+        }
         markReadLocal()
-        addNewsUrlToDatabase(data)
+        saveNewsLocal()
     }
 
     private fun markReadLocal() {
@@ -126,12 +135,65 @@ class M05DetailNewsFragment :
         PreferenceHelper.setValue(SAVE_READ_POST, readList)
     }
 
-    private fun addNewsUrlToDatabase(dataDetail: Item?) {
-        lifecycleScope.launch(Dispatchers.IO) {
-            dataDetail?.run {
-                newsUrlDao?.insertNewsUrl(NewsLocal(newsUrl = link, title = title, description = descriptionParse.textDescription, imageUrl = descriptionParse.imageUrl))
+    private fun saveNewsLocal() {
+        bindingOrNull?.ctlBottomDetail?.binding?.imgDetailSaveNews?.setOnClickListener {
+            lifecycleScope.launch {
+                val isSaved = checkSaveNews() == true
+                val newsLocal = createNewsLocal()
+
+                Timber.d("NINVB => check is saved $isSaved")
+
+                newsUrlDao?.let { dao ->
+                    if (isSaved) {
+                        val a = dao.updateNewsUrl(false)
+                        updateSaveState(false)
+                        Timber.d("NINVB => deleteNewsUrl local: a $a")
+                    } else {
+                        val b = dao.insertNewsUrl(newsLocal)
+                        updateSaveState(true)
+                        Timber.d("NINVB => insertNewsUrl local: b $b")
+                    }
+                }
             }
         }
+    }
+
+    private fun createNewsLocal(): NewsLocal {
+        return NewsLocal(
+            newsUrl = data?.link.orEmpty(),
+            title = data?.title.orEmpty(),
+            description = data?.descriptionParse?.textDescription.orEmpty(),
+            imageUrl = data?.descriptionParse?.imageUrl.orEmpty(),
+            isSave = true
+        )
+    }
+
+    private fun updateSaveState(isSaved: Boolean) {
+        bindingOrNull?.ctlBottomDetail?.setSaveNews(isSaved)
+    }
+
+    private fun addNewsUrlToDatabase() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val isSaved = checkSaveNews() == true
+            if (isSaved) return@launch
+            data?.run {
+                newsUrlDao?.insertNewsUrl(
+                    NewsLocal(
+                        newsUrl = link,
+                        title = title,
+                        description = descriptionParse.textDescription,
+                        imageUrl = descriptionParse.imageUrl
+                    )
+                )
+            }
+        }
+    }
+
+    private suspend fun checkSaveNews(): Boolean? = withContext(Dispatchers.IO) {
+        val listUrlLocalSave = async {
+            newsUrlDao?.getAllNewsSave()
+        }.await()?.map { it.newsUrl }
+        listUrlLocalSave?.contains(data?.link)
     }
 
     override fun initObserver() {

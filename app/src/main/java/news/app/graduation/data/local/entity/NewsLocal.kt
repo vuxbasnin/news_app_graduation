@@ -15,5 +15,5 @@ data class NewsLocal(
     @ColumnInfo(name = "title") val title: String? = null,
     @ColumnInfo(name = "description") val description: String? = null,
     @ColumnInfo(name = "imageUrl") val imageUrl: String? = null,
-    @ColumnInfo(name = "is_save") val isSave: Boolean = false
+    @ColumnInfo(name = "is_save") var isSave: Boolean = false
 )

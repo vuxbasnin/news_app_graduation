@@ -19,9 +19,9 @@ interface NewsUrlDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNewsUrl(newsLocal: NewsLocal): Long
 
-    @Update
-    suspend fun updateNewsUrl(newsLocal: NewsLocal)
+    @Query("UPDATE newsurllocal SET is_save=:isSave")
+    suspend fun updateNewsUrl(isSave: Boolean)
 
-    @Delete
-    suspend fun deleteNewsUrl(newsLocal: NewsLocal)
+    @Query("DELETE FROM newsurllocal WHERE news_url=:newsUrl")
+    suspend fun deleteNewsUrl(newsUrl: String): Int
 }
