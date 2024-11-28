@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Kenh14"
+            android:text="News App"
             android:textAllCaps="true"
             android:textColor="@color/color_text_343"
             app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
